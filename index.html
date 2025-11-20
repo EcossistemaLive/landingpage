@@ -12,27 +12,29 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* --- TOKENS VISUAIS --- */
+        /* --- DESIGN SYSTEM (LIVE HIGH-END) --- */
         :root {
-            /* Cores */
-            --bg-black: #0a0a0a;
-            --bg-light: #f4f4f6;
-            --bg-white: #ffffff;
-            
             /* Cores da Marca */
             --brand-blue: #06192a;      
             --neon-green: #00e800;      
+            
+            /* Paleta Base */
+            --bg-black: #050505;        
+            --bg-dark-card: #0f1f2e;    
+            --bg-light: #f4f4f6;        
+            --bg-white: #ffffff;
             
             /* Texto */
             --text-dark: #1a1a1a;
             --text-light: #ffffff;
             
             /* Efeitos */
-            --shadow-soft: 0 20px 40px rgba(0,0,0,0.08);
+            --shadow-card: 0 20px 50px rgba(0,0,0,0.08);
             --glow: 0 0 30px rgba(0, 232, 0, 0.3);
             --radius-pill: 50px;
+            --radius-card: 20px;
             
-            /* Fontes */
+            /* Tipografia */
             --font-head: 'Montserrat', sans-serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -40,56 +42,75 @@
         /* --- BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; color: var(--text-dark); }
+        
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--bg-black);
+            color: var(--text-dark);
+        }
+
         h1, h2, h3 { font-family: var(--font-head); letter-spacing: -0.5px; }
         img { max-width: 100%; display: block; }
         a { text-decoration: none; transition: 0.3s; }
 
         /* --- UTILITÁRIOS --- */
-        .section-pad { padding: 6rem 0; position: relative; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
+        .section-pad { padding: 6rem 0; position: relative; overflow: hidden; }
         .text-highlight { color: var(--neon-green); }
         .text-center { text-align: center; }
-
-        /* Temas */
+        
+        /* Temas de Seção */
         .theme-dark { background-color: var(--bg-black); color: var(--text-light); }
         .theme-dark h2, .theme-dark h3 { color: var(--text-light); }
         .theme-dark p { color: #a0a0a0; }
+        
         .theme-light { background-color: var(--bg-light); color: var(--text-dark); }
         .theme-light h2, .theme-light h3 { color: var(--brand-blue); }
+        .theme-light p { color: #555; }
 
         /* --- BOTÕES --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 16px 36px; border-radius: var(--radius-pill);
-            font-weight: 700; text-transform: uppercase; cursor: pointer; 
-            transition: all 0.3s ease; font-size: 0.9rem;
+            padding: 18px 40px; border-radius: var(--radius-pill);
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+            cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem; font-family: var(--font-head);
         }
-        .btn-primary {
-            background: var(--neon-green); color: #000; 
-            border: 2px solid var(--neon-green); box-shadow: var(--glow);
-        }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0, 232, 0, 0.5); }
         
-        /* --- HEADER --- */
+        .btn-primary {
+            background: var(--neon-green); color: #000;
+            box-shadow: var(--glow); border: 2px solid var(--neon-green);
+        }
+        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 10px 50px rgba(0, 232, 0, 0.6); }
+        
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.3);
+            color: white; backdrop-filter: blur(10px);
+        }
+        .btn-glass:hover { background: rgba(255, 255, 255, 0.2); border-color: white; }
+
+        /* --- HEADER (BRANCO/VIDRO COM LETRAS AZUIS) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,0,0,0.05);
             padding: 1rem 0; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
-        
         .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 42px; }
         
-        .nav-menu { display: flex; gap: 2rem; }
+        .nav-menu { display: flex; gap: 2.5rem; }
         .nav-menu a { 
-            font-weight: 700; color: var(--brand-blue); font-size: 0.9rem; 
-            text-transform: uppercase; letter-spacing: 0.5px;
+            font-weight: 700; 
+            color: var(--brand-blue); 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
         }
         .nav-menu a:hover { color: var(--neon-green); }
 
-        /* --- HERO --- */
+        /* --- HERO SECTION (VIDEO BG) --- */
         .hero {
             position: relative; height: 100vh; min-height: 700px;
             display: flex; align-items: center; justify-content: center;
@@ -97,83 +118,133 @@
         }
         .video-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0; filter: brightness(0.35);
+            object-fit: cover; z-index: 0; filter: brightness(0.3); 
         }
-        .hero-content { position: relative; z-index: 2; max-width: 900px; animation: fadeUp 1s ease-out; }
-        .hero h1 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem; text-transform: uppercase; }
+        /* Overlay gradiente */
+        .hero::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle, transparent 20%, #050505 100%);
+            z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 3; max-width: 900px; animation: fadeUp 1s ease-out; }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1; margin-bottom: 1.5rem;
+            text-transform: uppercase; font-weight: 900;
+        }
+        
+        .hero p {
+            font-size: 1.2rem; margin-bottom: 2.5rem; color: rgba(255,255,255,0.8);
+            max-width: 700px; margin-left: auto; margin-right: auto;
+        }
+        .hero-tag {
+            display: inline-block; padding: 8px 20px; border-radius: 50px;
+            background: rgba(0, 232, 0, 0.15); border: 1px solid var(--neon-green);
+            color: var(--neon-green); font-weight: 700; font-size: 0.8rem;
+            text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px;
+        }
 
-        /* --- MARQUEE --- */
-        .marquee-section { background: var(--neon-green); color: #000; padding: 15px 0; overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
-        .marquee-item { font-family: var(--font-head); font-weight: 900; font-size: 1.5rem; margin: 0 30px; }
+        /* --- MARQUEE (Letreiro) --- */
+        .marquee-section {
+            background: var(--neon-green); color: #000; padding: 18px 0;
+            overflow: hidden; white-space: nowrap; position: relative; z-index: 5;
+        }
+        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        .marquee-item { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; margin: 0 40px; text-transform: uppercase; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- CARROSSEL DE MENTORES --- */
+        /* --- PILARES (Fundo Claro) --- */
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; margin-top: 4rem;
+        }
+        .light-card {
+            background: var(--bg-white); border-radius: var(--radius-card); padding: 3rem 2rem;
+            box-shadow: var(--shadow-card); transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);
+            text-align: left; position: relative; overflow: hidden;
+        }
+        .light-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 0%;
+            background: var(--neon-green); transition: 0.4s;
+        }
+        .light-card:hover { transform: translateY(-10px); }
+        .light-card:hover::before { height: 100%; }
+        
+        .icon-box {
+            width: 70px; height: 70px; background: #f0fdf4; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: var(--neon-green); margin-bottom: 1.5rem;
+        }
+
+        /* --- MENTORES (Carrossel Infinito + Fundo Escuro) --- */
         .mentors-track {
             display: flex; gap: 2rem; overflow-x: hidden; 
-            padding: 2rem 1rem; cursor: grab;
+            padding: 3rem 1rem; cursor: grab;
         }
-
         .mentor-card {
             min-width: 320px; max-width: 320px; flex-shrink: 0;
-            background: #0f1f2e; border-radius: 20px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; position: relative;
+            background: var(--bg-dark-card); border-radius: 20px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; position: relative;
         }
-        .mentor-card:hover { border-color: var(--neon-green); transform: scale(1.02); z-index: 5; }
-
+        .mentor-card:hover {
+            border-color: var(--neon-green); transform: scale(1.03); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6); z-index: 10;
+        }
         .mentor-img { height: 380px; overflow: hidden; }
-        .mentor-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .mentor-card:hover .mentor-img img { transform: scale(1.1); }
+        .mentor-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
+        .mentor-card:hover .mentor-img img { transform: scale(1.1); } 
 
-        .mentor-details { padding: 1.5rem; background: linear-gradient(to top, #0a0a0a, #0f1f2e); position: relative; height: 180px; display: flex; flex-direction: column; justify-content: flex-start; }
-        .mentor-role { color: var(--neon-green); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .mentor-name { color: white; font-size: 1.2rem; margin-bottom: 5px; line-height: 1.2; }
-        .mentor-course { color: #888; font-size: 0.85rem; margin-top: auto; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .mentor-details { padding: 2rem 1.5rem; background: linear-gradient(to bottom, var(--bg-dark-card), #000); position: relative; display: flex; flex-direction: column; height: 200px; justify-content: space-between; }
+        .mentor-role { color: var(--neon-green); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px; }
+        .mentor-name { color: white; font-size: 1.3rem; margin-bottom: 5px; font-weight: 700; line-height: 1.2;}
+        .mentor-course { color: #999; font-size: 0.85rem; font-style: italic; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: auto; }
 
-        /* --- JORNADA --- */
-        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .light-card {
-            background: var(--bg-white); border-radius: 24px; padding: 3rem 2rem;
-            box-shadow: var(--shadow-soft); transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);
-        }
-        .light-card:hover { transform: translateY(-10px); border-color: var(--neon-green); }
-        
+        /* --- JORNADA (Lista Vertical) --- */
         .timeline-node {
-            display: flex; gap: 2rem; margin-bottom: 1.5rem; background: white; padding: 2rem;
-            border-radius: 20px; box-shadow: var(--shadow-soft); 
-            border-left: 6px solid var(--neon-green); 
+            display: flex; gap: 2.5rem; margin-bottom: 2rem; background: white; padding: 2.5rem;
+            border-radius: 24px; box-shadow: var(--shadow-card); 
+            border-left: 6px solid var(--neon-green);
             align-items: center; transition: 0.3s;
         }
-        .timeline-node:hover { transform: translateX(10px); border-left-width: 10px; }
-        .node-num { font-size: 3.5rem; font-weight: 900; color: #e0e0e0; font-family: var(--font-head); line-height: 1; }
+        .timeline-node:hover { transform: translateX(15px); border-left-width: 12px; }
         
-        /* --- CTA --- */
+        .node-num {
+            font-size: 4rem; font-weight: 900; color: #e5e5e5;
+            font-family: var(--font-head); line-height: 1; min-width: 80px;
+        }
+        .node-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--brand-blue); }
+
+        /* --- CTA FINAL --- */
         .cta-wrapper {
-            background: radial-gradient(circle at center, #1a3b55 0%, #06192a 100%);
-            border-radius: 30px; padding: 5rem 2rem; text-align: center; color: white; margin-top: 4rem;
+            background: radial-gradient(circle at center, #0f2e4d 0%, #000 100%);
+            border-radius: 40px; padding: 6rem 2rem; text-align: center;
+            color: white; margin-top: 4rem; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
         }
+        
         .form-inline {
-            background: white; padding: 8px; border-radius: 50px; display: flex; 
-            max-width: 600px; margin: 2rem auto 0; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background: white; padding: 10px; border-radius: 60px; display: flex; 
+            max-width: 600px; margin: 3rem auto 0; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
-        .form-inline input { flex: 1; border: none; padding: 0 25px; font-size: 1rem; outline: none; border-radius: 50px; }
+        .form-inline input { flex: 1; border: none; padding: 0 30px; font-size: 1.1rem; outline: none; border-radius: 50px; color: #333; }
         .form-inline button {
-            padding: 12px 30px; border-radius: 40px; border: none;
-            background: var(--neon-green); font-weight: 700; cursor: pointer;
+            padding: 16px 40px; border-radius: 50px; border: none;
+            background: var(--neon-green); font-weight: 800; cursor: pointer;
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
         }
 
         /* --- FOOTER --- */
-        footer { background: #000; color: #666; padding: 4rem 0; text-align: center; border-top: 1px solid #222; }
+        footer { background: #000; color: #666; padding: 5rem 0; text-align: center; border-top: 1px solid #222; }
 
         /* Responsividade */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
+            .hero h1 { font-size: 3rem; }
             .nav-menu { display: none; }
             .form-inline { flex-direction: column; background: transparent; padding: 0; box-shadow: none; }
-            .form-inline input { padding: 18px; margin-bottom: 10px; border-radius: 12px; width: 100%; }
-            .form-inline button { width: 100%; padding: 18px; }
-            .timeline-node { flex-direction: column; text-align: center; }
+            .form-inline input { padding: 20px; margin-bottom: 15px; border-radius: 15px; width: 100%; }
+            .form-inline button { width: 100%; padding: 20px; }
+            .timeline-node { flex-direction: column; text-align: center; gap: 1rem; }
         }
     </style>
 </head>
@@ -187,7 +258,7 @@
             <nav class="nav-menu">
                 <a href="#ecossistema">Ecossistema</a>
                 <a href="#mentores">Mentores</a>
-                <a href="#jornada">Jornada</a>
+                <a href="#jornada">Sua Jornada</a>
             </nav>
             <a href="#matricula" class="btn btn-primary" style="padding: 12px 30px; font-size: 0.8rem;">Área do Aluno</a>
         </div>
@@ -195,19 +266,20 @@
 
     <section class="hero">
         <video class="video-bg" autoplay muted loop playsinline poster="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1-1.png">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-working-together-in-an-office-4424-large.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-in-a-business-meeting-in-an-office-4422-large.mp4" type="video/mp4">
         </video>
 
         <div class="hero-content">
-            <div style="margin-bottom: 20px;">
-                <span style="background: rgba(0,232,0,0.1); color: #00ff00; padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 0.8rem; border: 1px solid #00ff00; text-transform: uppercase; letter-spacing: 1px;">O Novo Padrão</span>
-            </div>
+            <span class="hero-tag">Ecossistema de Elite</span>
             <h1>Liderança <br><span class="text-highlight">Antifrágil</span></h1>
             <p>
-                A única coisa entre você e a antifragilidade é a decisão de agir. 
                 Navegue a complexidade do mundo atual gerindo pessoas, processos e negócios.
+                Acesse a metodologia validada por mais de 5.000 líderes e executivos.
             </p>
-            <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
+                <a href="#pilares" class="btn btn-glass">Conhecer o Método</a>
+            </div>
         </div>
     </section>
 
@@ -224,25 +296,25 @@
 
     <section class="section-pad theme-light" id="ecossistema">
         <div class="container">
-            <div class="text-center">
-                <h2 style="font-size: 2.5rem;">O <span style="color: #06192a;">Ecossistema</span></h2>
-                <p>Não entregamos apenas cursos. Entregamos a bússola.</p>
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem;">Os Pilares da <span style="color: #06192a;">Live</span></h2>
+                <p>Não entregamos apenas cursos. Entregamos clareza estratégica.</p>
             </div>
             <div class="bento-grid">
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-compass"></i></div>
                     <h3>Navegação na Crise</h3>
-                    <p>Atuamos como seu "farol". Tenha os meios de ação necessários para lidar com a complexidade e gerir no caos.</p>
+                    <p style="margin-top: 1rem;">Atuamos como seu "farol". Tenha os meios de ação necessários para lidar com a complexidade e gerir no caos.</p>
                 </div>
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-chart-polar"></i></div>
                     <h3>Desenvolvimento 360°</h3>
-                    <p>Expertises essenciais em uma única plataforma. Conhecimento que se conecta e multiplica resultados.</p>
+                    <p style="margin-top: 1rem;">Expertises essenciais em uma única plataforma. Conhecimento que se conecta e multiplica resultados.</p>
                 </div>
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-shield-check"></i></div>
                     <h3>Liderança Antifrágil</h3>
-                    <p>O líder antifrágil não apenas resiste, ele melhora com a pressão. Prepare-se para os desafios diários.</p>
+                    <p style="margin-top: 1rem;">O líder antifrágil não apenas resiste, ele melhora com a pressão. Prepare-se para os desafios diários.</p>
                 </div>
             </div>
         </div>
@@ -270,7 +342,7 @@
                 <div class="mentor-card">
                     <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5.png" alt="Bruno Lesche"></div>
                     <div class="mentor-details">
-                        <span class="mentor-role">Vendas & Marketing</span>
+                        <span class="mentor-role">Marketing & Vendas</span>
                         <h3 class="mentor-name">Bruno Lesche</h3>
                         <p class="mentor-course">Curso: Marketing não vende nada, quem vende é comercial</p>
                     </div>
@@ -279,7 +351,7 @@
                 <div class="mentor-card">
                     <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/6.png" alt="Daniel Bueno"></div>
                     <div class="mentor-details">
-                        <span class="mentor-role">Vendas de Impacto</span>
+                        <span class="mentor-role">Vendas</span>
                         <h3 class="mentor-name">Daniel Bueno</h3>
                         <p class="mentor-course">Curso: Impact Sales</p>
                     </div>
@@ -288,7 +360,7 @@
                 <div class="mentor-card">
                     <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/3.png" alt="Karolina Marques"></div>
                     <div class="mentor-details">
-                        <span class="mentor-role">Branding & Reputação</span>
+                        <span class="mentor-role">Branding</span>
                         <h3 class="mentor-name">Karolina da Costa Vieira Marques</h3>
                         <p class="mentor-course">Curso: Efeito Reputação</p>
                     </div>
@@ -306,7 +378,7 @@
                 <div class="mentor-card">
                     <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/4.png" alt="Bruno Cunha"></div>
                     <div class="mentor-details">
-                        <span class="mentor-role">Oratória & Comunicação</span>
+                        <span class="mentor-role">Comunicação</span>
                         <h3 class="mentor-name">Bruno Cunha</h3>
                         <p class="mentor-course">Curso: Master em Oratória</p>
                     </div>
@@ -326,41 +398,41 @@
                 
                 <div class="timeline-node">
                     <div class="node-num">01</div>
-                    <div>
-                        <h3 style="margin-bottom: 5px;">Formação Live</h3>
-                        <p style="margin:0;">Cursos gravados, certificações e trilhas formativas.</p>
+                    <div class="node-content">
+                        <h3>Formação Live</h3>
+                        <p style="margin:0;">A base técnica. Cursos gravados, certificações e trilhas formativas.</p>
                     </div>
                 </div>
 
                 <div class="timeline-node">
                     <div class="node-num">02</div>
-                    <div>
-                        <h3 style="margin-bottom: 5px;">Área de Membros</h3>
-                        <p style="margin:0;">Aulas mensais, lives fechadas e comunidade ativa.</p>
+                    <div class="node-content">
+                        <h3>Área de Membros</h3>
+                        <p style="margin:0;">Conteúdo recorrente. Aulas mensais, lives fechadas e comunidade ativa.</p>
                     </div>
                 </div>
 
                 <div class="timeline-node">
                     <div class="node-num">03</div>
-                    <div>
-                        <h3 style="margin-bottom: 5px;">Mentoria Individual</h3>
-                        <p style="margin:0;">Diagnóstico de carreira e plano de ação personalizado.</p>
+                    <div class="node-content">
+                        <h3>Mentoria Individual</h3>
+                        <p style="margin:0;">Diagnóstico de carreira e plano de ação personalizado com especialistas.</p>
                     </div>
                 </div>
 
                 <div class="timeline-node">
                     <div class="node-num">04</div>
-                    <div>
-                        <h3 style="margin-bottom: 5px;">Conselho de Líderes</h3>
-                        <p style="margin:0;">Networking de alto nível e acesso estratégico.</p>
+                    <div class="node-content">
+                        <h3>Conselho de Líderes</h3>
+                        <p style="margin:0;">O topo da pirâmide. Masterminds e acesso a decisões estratégicas.</p>
                     </div>
                 </div>
 
                 <div class="timeline-node">
                     <div class="node-num">05</div>
-                    <div>
-                        <h3 style="margin-bottom: 5px;">Eventos Presenciais Exclusivos</h3>
-                        <p style="margin:0;">Imersões práticas e networking "olho no olho".</p>
+                    <div class="node-content">
+                        <h3>Eventos Presenciais Exclusivos</h3>
+                        <p style="margin:0;">A experiência tangível. Imersões práticas e networking "olho no olho".</p>
                     </div>
                 </div>
 
