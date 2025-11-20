@@ -12,27 +12,27 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* --- DESIGN SYSTEM (LIVE HIGH-END) --- */
+        /* --- TOKENS VISUAIS --- */
         :root {
-            /* Paleta de Cores */
-            --bg-black: #050505;       /* Preto Absoluto (Hero/Mentores) */
-            --bg-brand: #06192a;       /* Azul Live (Detalhes) */
-            --bg-light: #f4f4f6;       /* Cinza Claro (Respiro) */
+            /* Cores */
+            --bg-black: #0a0a0a;
+            --bg-light: #f4f4f6;
             --bg-white: #ffffff;
             
-            /* Acentos */
-            --neon-green: #00e800;     /* Ação e Destaque */
+            /* Cores da Marca */
+            --brand-blue: #06192a;      /* Azul Live (Escuro/Institucional) */
+            --neon-green: #00e800;      /* Verde Live (Ação) */
+            
+            /* Texto */
             --text-dark: #1a1a1a;
             --text-light: #ffffff;
-            --text-gray: #888888;
-
+            
             /* Efeitos */
-            --shadow-card: 0 20px 40px rgba(0,0,0,0.08);
+            --shadow-soft: 0 20px 40px rgba(0,0,0,0.08);
             --glow: 0 0 30px rgba(0, 232, 0, 0.3);
             --radius-pill: 50px;
-            --radius-card: 16px;
             
-            /* Tipografia */
+            /* Fontes */
             --font-head: 'Montserrat', sans-serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -40,242 +40,143 @@
         /* --- BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: var(--bg-black);
-        }
-
+        body { font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; color: var(--text-dark); }
         h1, h2, h3 { font-family: var(--font-head); letter-spacing: -0.5px; }
         img { max-width: 100%; display: block; }
         a { text-decoration: none; transition: 0.3s; }
 
-        /* --- COMPONENTES --- */
+        /* --- UTILITÁRIOS --- */
+        .section-pad { padding: 6rem 0; position: relative; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
-        .section-pad { padding: 6rem 0; position: relative; overflow: hidden; }
         .text-highlight { color: var(--neon-green); }
         .text-center { text-align: center; }
 
-        /* Temas de Seção */
+        /* Temas */
         .theme-dark { background-color: var(--bg-black); color: var(--text-light); }
         .theme-dark h2, .theme-dark h3 { color: var(--text-light); }
         .theme-dark p { color: #a0a0a0; }
-        
         .theme-light { background-color: var(--bg-light); color: var(--text-dark); }
-        .theme-light h2, .theme-light h3 { color: #06192a; }
-        .theme-light p { color: #555; }
+        .theme-light h2, .theme-light h3 { color: var(--brand-blue); }
 
-        /* Botões Pill (Estilo Novo Mercado) */
+        /* --- BOTÕES --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 18px 40px; border-radius: var(--radius-pill);
-            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-            cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem; font-family: var(--font-head);
+            padding: 16px 36px; border-radius: var(--radius-pill);
+            font-weight: 700; text-transform: uppercase; cursor: pointer; 
+            transition: all 0.3s ease; font-size: 0.9rem;
         }
-        
         .btn-primary {
-            background: var(--neon-green); color: #000;
-            box-shadow: var(--glow); border: 2px solid var(--neon-green);
+            background: var(--neon-green); color: #000; 
+            border: 2px solid var(--neon-green); box-shadow: var(--glow);
         }
-        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 10px 50px rgba(0, 232, 0, 0.5); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0, 232, 0, 0.5); }
         
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2);
-            color: white; backdrop-filter: blur(10px);
-        }
-        .btn-glass:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
-
-        /* --- HEADER --- */
+        /* --- HEADER (BRANCO/VIDRO COM LETRAS AZUIS) --- */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95); /* Fundo claro para contraste */
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 1rem 0; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
+        
         .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
         .logo img { height: 42px; }
+        
         .nav-menu { display: flex; gap: 2rem; }
-        .nav-menu a { font-weight: 600; color: #ccc; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-menu a { 
+            font-weight: 700; 
+            color: var(--brand-blue); /* Azul da Marca Solicitado */
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+        }
         .nav-menu a:hover { color: var(--neon-green); }
 
-        /* --- HERO SECTION (VIDEO BG) --- */
+        /* --- HERO --- */
         .hero {
             position: relative; height: 100vh; min-height: 700px;
             display: flex; align-items: center; justify-content: center;
             text-align: center; color: white;
         }
-
         .video-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; z-index: 0; filter: brightness(0.35);
         }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; animation: fadeUp 1s ease-out; }
+        .hero h1 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem; text-transform: uppercase; }
 
-        /* Gradiente para leitura */
-        .hero::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle, transparent 20%, #050505 100%);
-            z-index: 1;
-        }
-
-        .hero-content { position: relative; z-index: 3; max-width: 900px; animation: fadeUp 1s ease-out; }
-        
-        .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-        
-        .hero p {
-            font-size: 1.2rem; margin-bottom: 2.5rem; color: rgba(255,255,255,0.8);
-            max-width: 700px; margin-left: auto; margin-right: auto;
-        }
-
-        /* Tagline Hero */
-        .hero-tag {
-            display: inline-block; padding: 8px 20px; border-radius: 50px;
-            background: rgba(0, 232, 0, 0.1); border: 1px solid var(--neon-green);
-            color: var(--neon-green); font-weight: 700; font-size: 0.8rem;
-            text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;
-        }
-
-        /* --- MARQUEE (LETREIRO) --- */
-        .marquee-section {
-            background: var(--neon-green); color: #000; padding: 18px 0;
-            overflow: hidden; white-space: nowrap; position: relative; z-index: 5;
-        }
-        .marquee-content { display: inline-block; animation: marquee 25s linear infinite; }
-        .marquee-item { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; margin: 0 40px; text-transform: uppercase; }
+        /* --- MARQUEE --- */
+        .marquee-section { background: var(--neon-green); color: #000; padding: 15px 0; overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        .marquee-item { font-family: var(--font-head); font-weight: 900; font-size: 1.5rem; margin: 0 30px; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- PILARES (FUNDO CLARO) --- */
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem; margin-top: 4rem;
-        }
-
-        .light-card {
-            background: var(--bg-white); border-radius: var(--radius-card); padding: 3rem 2rem;
-            box-shadow: var(--shadow-card); transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);
-            text-align: left; position: relative; overflow: hidden;
-        }
-
-        .light-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0%;
-            background: var(--neon-green); transition: 0.4s;
-        }
-
-        .light-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.12); }
-        .light-card:hover::before { height: 100%; }
-
-        .icon-box {
-            width: 70px; height: 70px; background: #ebfbee; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--neon-green); margin-bottom: 1.5rem;
-        }
-
-        /* --- CARROSSEL DE MENTORES (FUNDO ESCURO) --- */
-        .carousel-container { position: relative; display: flex; align-items: center; margin-top: 3rem; }
-
+        /* --- CARROSSEL DE MENTORES (LOOP) --- */
         .mentors-track {
-            display: flex; gap: 2rem; overflow-x: auto; scroll-behavior: smooth;
-            padding: 2rem 1rem; scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE 10+ */
+            display: flex; gap: 2rem; overflow-x: hidden; /* Esconde barra de rolagem para o efeito JS */
+            padding: 2rem 1rem; cursor: grab;
         }
-        .mentors-track::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
 
         .mentor-card {
-            min-width: 320px; max-width: 320px; /* Largura fixa */
-            background: #0e0e0e; border-radius: 20px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.4s;
-            position: relative; flex-shrink: 0;
+            min-width: 320px; max-width: 320px; flex-shrink: 0;
+            background: #0f1f2e; border-radius: 20px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; position: relative;
         }
+        .mentor-card:hover { border-color: var(--neon-green); transform: scale(1.02); z-index: 5; }
 
-        .mentor-card:hover {
-            border-color: var(--neon-green); transform: scale(1.02);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-
-        .mentor-img { height: 380px; overflow: hidden; position: relative; }
-        .mentor-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease-out; }
-        
-        /* Efeito Zoom no Hover */
+        .mentor-img { height: 380px; overflow: hidden; }
+        .mentor-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .mentor-card:hover .mentor-img img { transform: scale(1.1); }
 
-        .mentor-info {
-            padding: 1.5rem; background: linear-gradient(180deg, #0e0e0e 0%, #000 100%);
-            border-top: 1px solid rgba(255,255,255,0.05); position: relative;
-        }
+        .mentor-details { padding: 1.5rem; background: linear-gradient(to top, #0a0a0a, #0f1f2e); position: relative; }
+        .mentor-role { color: var(--neon-green); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        .mentor-name { color: white; font-size: 1.2rem; margin-bottom: 5px; }
+        .mentor-course { color: #888; font-size: 0.9rem; }
 
-        .mentor-role {
-            color: var(--neon-green); font-size: 0.7rem; font-weight: 800;
-            text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px;
+        /* --- JORNADA --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .light-card {
+            background: var(--bg-white); border-radius: 24px; padding: 3rem 2rem;
+            box-shadow: var(--shadow-soft); transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);
         }
-        
-        .mentor-name { font-size: 1.2rem; color: white; margin-bottom: 5px; }
-        .mentor-course { font-size: 0.9rem; color: #888; font-style: italic; }
-
-        /* Botões de Navegação */
-        .nav-btn {
-            width: 50px; height: 50px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-            color: white; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 1.5rem; transition: 0.3s; z-index: 10;
-            backdrop-filter: blur(5px);
-        }
-        .nav-btn:hover { background: var(--neon-green); color: black; border-color: var(--neon-green); }
-        
-        /* --- JORNADA (FUNDO CLARO) --- */
-        .timeline-wrapper { max-width: 850px; margin: 0 auto; }
+        .light-card:hover { transform: translateY(-10px); border-color: var(--neon-green); }
         
         .timeline-node {
             display: flex; gap: 2rem; margin-bottom: 1.5rem; background: white; padding: 2rem;
-            border-radius: 20px; box-shadow: var(--shadow-soft); border-left: 6px solid var(--neon-green);
+            border-radius: 20px; box-shadow: var(--shadow-soft); 
+            border-left: 6px solid var(--neon-green); /* Verde Padrão para TODOS */
             align-items: center; transition: 0.3s;
         }
+        .timeline-node:hover { transform: translateX(10px); border-left-width: 10px; }
+        .node-num { font-size: 3.5rem; font-weight: 900; color: #e0e0e0; font-family: var(--font-head); line-height: 1; }
         
-        .timeline-node:hover { transform: translateX(15px); border-left-width: 10px; }
-        
-        .node-num {
-            font-size: 3.5rem; font-weight: 900; color: #e0e0e0;
-            font-family: var(--font-head); line-height: 1; min-width: 80px;
-        }
-        
-        /* Destaque para o item 5 */
-        .timeline-node.premium { border-left-color: #06192a; background: #f9f9fb; }
-        .timeline-node.premium .node-num { color: #d0d4d9; }
-
-        /* --- CTA FINAL --- */
+        /* --- CTA --- */
         .cta-wrapper {
-            background: radial-gradient(circle at center, #0f2e4d 0%, #000 100%);
-            border-radius: 30px; padding: 5rem 2rem; text-align: center;
-            color: white; margin-top: 4rem; border: 1px solid rgba(255,255,255,0.1);
+            background: radial-gradient(circle at center, #1a3b55 0%, #06192a 100%);
+            border-radius: 30px; padding: 5rem 2rem; text-align: center; color: white; margin-top: 4rem;
         }
-        
         .form-inline {
             background: white; padding: 8px; border-radius: 50px; display: flex; 
-            max-width: 550px; margin: 2.5rem auto 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 600px; margin: 2rem auto 0; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
-        
-        .form-inline input { flex: 1; border: none; padding: 0 25px; font-size: 1rem; outline: none; border-radius: 50px; color: #333; }
+        .form-inline input { flex: 1; border: none; padding: 0 25px; font-size: 1rem; outline: none; border-radius: 50px; }
         .form-inline button {
-            padding: 14px 35px; border-radius: 40px; border: none;
+            padding: 12px 30px; border-radius: 40px; border: none;
             background: var(--neon-green); font-weight: 700; cursor: pointer;
-            text-transform: uppercase; font-size: 0.9rem;
         }
 
         /* --- FOOTER --- */
-        footer { background: #000; color: #666; padding: 4rem 0; text-align: center; border-top: 1px solid #111; }
+        footer { background: #000; color: #666; padding: 4rem 0; text-align: center; border-top: 1px solid #222; }
 
         /* Responsividade */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.8rem; }
-            .nav-menu, .nav-btn { display: none; } /* Esconde menu e setas no mobile */
+            .nav-menu { display: none; }
             .form-inline { flex-direction: column; background: transparent; padding: 0; box-shadow: none; }
             .form-inline input { padding: 18px; margin-bottom: 10px; border-radius: 12px; width: 100%; }
             .form-inline button { width: 100%; padding: 18px; }
-            .timeline-node { flex-direction: column; text-align: center; gap: 1rem; }
+            .timeline-node { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -301,16 +202,15 @@
         </video>
 
         <div class="hero-content">
-            <span class="hero-tag">Desenvolvimento de Elite</span>
+            <div style="margin-bottom: 20px;">
+                <span style="background: rgba(0,232,0,0.1); color: #00ff00; padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 0.8rem; border: 1px solid #00ff00; text-transform: uppercase; letter-spacing: 1px;">O Novo Padrão</span>
+            </div>
             <h1>Liderança <br><span class="text-highlight">Antifrágil</span></h1>
             <p>
                 Navegue a complexidade do mundo atual gerindo pessoas, processos e negócios.
                 Acesse a metodologia validada por mais de 5.000 líderes.
             </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
-                <a href="#pilares" class="btn btn-glass">Conhecer o Método</a>
-            </div>
+            <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
         </div>
     </section>
 
@@ -327,11 +227,10 @@
 
     <section class="section-pad theme-light" id="ecossistema">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem;">Os Pilares da <span style="color: #06192a;">Live</span></h2>
-                <p>Não entregamos apenas cursos. Entregamos clareza estratégica.</p>
+            <div class="text-center">
+                <h2 style="font-size: 2.5rem;">O <span style="color: #06192a;">Ecossistema</span></h2>
+                <p>Não entregamos apenas cursos. Entregamos a bússola.</p>
             </div>
-
             <div class="bento-grid">
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-compass"></i></div>
@@ -341,12 +240,12 @@
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-chart-polar"></i></div>
                     <h3>Desenvolvimento 360°</h3>
-                    <p>Centralizamos expertises essenciais em uma única plataforma. Conhecimento que se conecta e multiplica resultados.</p>
+                    <p>Expertises essenciais em uma única plataforma. Conhecimento que se conecta e multiplica resultados.</p>
                 </div>
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-shield-check"></i></div>
                     <h3>Liderança Antifrágil</h3>
-                    <p>Prepare-se para lidar com desafios diários. O líder antifrágil não apenas resiste, ele se fortalece com a pressão.</p>
+                    <p>O líder antifrágil não apenas resiste, ele melhora com a pressão. Prepare-se para os desafios diários.</p>
                 </div>
             </div>
         </div>
@@ -357,69 +256,58 @@
             <div class="text-center" style="margin-bottom: 4rem;">
                 <span class="text-highlight" style="font-weight: 700; letter-spacing: 1px;">QUEM ENSINA</span>
                 <h2 style="font-size: 2.8rem;">Mentores de <span class="text-highlight">Elite</span></h2>
-                <p>Especialistas de campo, não apenas de palco.</p>
+                <p>Especialistas que vivem o que ensinam.</p>
             </div>
 
-            <div class="carousel-container">
-                <button class="nav-btn" onclick="scrollMentors(-1)" style="margin-right: 20px;"><i class="ph ph-caret-left"></i></button>
-                
-                <div class="mentors-track" id="mentorsTrack">
-                    
-                    <div class="mentor-card">
-                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1.png" alt="Mentor 1"></div>
-                        <div class="mentor-info">
-                            <span class="mentor-role">Gestão Comercial</span>
-                            <h3 class="mentor-name">Nome do Mentor</h3> 
-                            <p class="mentor-course">Curso: Máquina de Vendas</p>
-                        </div>
+            <div class="mentors-track" id="mentorsTrack">
+                <div class="mentor-card">
+                    <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1.png" alt="Mentor 1"></div>
+                    <div class="mentor-details">
+                        <span class="mentor-role">Gestão Comercial</span>
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <p class="mentor-course">Curso: Máquina de Vendas</p>
                     </div>
-
-                    <div class="mentor-card">
-                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5.png" alt="Mentor 2"></div>
-                        <div class="mentor-info">
-                            <span class="mentor-role">Liderança Ágil</span>
-                            <h3 class="mentor-name">Nome do Mentor</h3>
-                            <p class="mentor-course">Curso: Liderança Exponencial</p>
-                        </div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5.png" alt="Mentor 2"></div>
+                    <div class="mentor-details">
+                        <span class="mentor-role">Liderança Ágil</span>
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <p class="mentor-course">Curso: Liderança Exponencial</p>
                     </div>
-
-                    <div class="mentor-card">
-                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/6.png" alt="Mentor 3"></div>
-                        <div class="mentor-info">
-                            <span class="mentor-role">Neurociência</span>
-                            <h3 class="mentor-name">Nome do Mentor</h3>
-                            <p class="mentor-course">Curso: Cérebro de Performance</p>
-                        </div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/6.png" alt="Mentor 3"></div>
+                    <div class="mentor-details">
+                        <span class="mentor-role">Neurociência</span>
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <p class="mentor-course">Curso: Cérebro de Performance</p>
                     </div>
-
-                    <div class="mentor-card">
-                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/3.png" alt="Mentor 4"></div>
-                        <div class="mentor-info">
-                            <span class="mentor-role">Marketing</span>
-                            <h3 class="mentor-name">Nome do Mentor</h3>
-                            <p class="mentor-course">Curso: Branding Pessoal</p>
-                        </div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/3.png" alt="Mentor 4"></div>
+                    <div class="mentor-details">
+                        <span class="mentor-role">Marketing</span>
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <p class="mentor-course">Curso: Branding Pessoal</p>
                     </div>
-
-                    <div class="mentor-card">
-                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/2.png" alt="Mentor 5"></div>
-                        <div class="mentor-info">
-                            <span class="mentor-role">Inovação</span>
-                            <h3 class="mentor-name">Nome do Mentor</h3>
-                            <p class="mentor-course">Curso: Gestão 4.0</p>
-                        </div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/2.png" alt="Mentor 5"></div>
+                    <div class="mentor-details">
+                        <span class="mentor-role">Inovação</span>
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <p class="mentor-course">Curso: Gestão 4.0</p>
                     </div>
-
-                    <div class="mentor-card">
-                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/4.png" alt="Mentor 6"></div>
-                        <div class="mentor-info">
-                            <span class="mentor-role">Finanças</span>
-                            <h3 class="mentor-name">Nome do Mentor</h3>
-                            <p class="mentor-course">Curso: Finanças Corporativas</p>
-                        </div>
+                </div>
+                <div class="mentor-card">
+                    <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/4.png" alt="Mentor 6"></div>
+                    <div class="mentor-details">
+                        <span class="mentor-role">Finanças</span>
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <p class="mentor-course">Curso: Finanças Corporativas</p>
                     </div>
-
-                </div> <button class="nav-btn" onclick="scrollMentors(1)" style="margin-left: 20px;"><i class="ph ph-caret-right"></i></button>
+                </div>
             </div>
         </div>
     </section>
@@ -427,17 +315,16 @@
     <section class="section-pad theme-light" id="jornada">
         <div class="container">
             <div class="text-center" style="margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem;">Sua Jornada <span style="color: #06192a;">Personalizada</span></h2>
+                <h2 style="font-size: 2.5rem;">Sua <span style="color: #06192a;">Jornada</span></h2>
                 <p>O passo a passo estruturado para sair da estagnação.</p>
             </div>
-
-            <div class="timeline-wrapper">
+            <div style="max-width: 800px; margin: 0 auto;">
                 
                 <div class="timeline-node">
                     <div class="node-num">01</div>
                     <div>
                         <h3 style="margin-bottom: 5px;">Formação Live</h3>
-                        <p style="margin:0;">A base técnica. Cursos gravados, certificações e trilhas formativas para nivelar seu conhecimento.</p>
+                        <p style="margin:0;">A base técnica. Cursos gravados, certificações e trilhas formativas.</p>
                     </div>
                 </div>
 
@@ -445,7 +332,7 @@
                     <div class="node-num">02</div>
                     <div>
                         <h3 style="margin-bottom: 5px;">Área de Membros</h3>
-                        <p style="margin:0;">Conteúdo recorrente. Acesso a aulas mensais inéditas, lives fechadas com especialistas e comunidade ativa.</p>
+                        <p style="margin:0;">Conteúdo recorrente. Aulas mensais, lives fechadas e comunidade ativa.</p>
                     </div>
                 </div>
 
@@ -453,7 +340,7 @@
                     <div class="node-num">03</div>
                     <div>
                         <h3 style="margin-bottom: 5px;">Mentoria Individual</h3>
-                        <p style="margin:0;">Aceleração de carreira. Acesso direto a mentores para diagnóstico de perfil e plano de ação personalizado.</p>
+                        <p style="margin:0;">Diagnóstico de carreira e plano de ação personalizado.</p>
                     </div>
                 </div>
 
@@ -461,15 +348,15 @@
                     <div class="node-num">04</div>
                     <div>
                         <h3 style="margin-bottom: 5px;">Conselho de Líderes</h3>
-                        <p style="margin:0;">O topo da pirâmide. Suporte estratégico exclusivo, masterminds e acesso a decisões de alto nível.</p>
+                        <p style="margin:0;">Networking de alto nível e acesso estratégico.</p>
                     </div>
                 </div>
 
-                <div class="timeline-node premium">
+                <div class="timeline-node">
                     <div class="node-num">05</div>
                     <div>
                         <h3 style="margin-bottom: 5px;">Eventos Presenciais Exclusivos</h3>
-                        <p style="margin:0;">A experiência tangível. Imersões práticas e networking "olho no olho" em ambientes de alto padrão.</p>
+                        <p style="margin:0;">A experiência tangível. Imersões práticas e networking "olho no olho".</p>
                     </div>
                 </div>
 
@@ -480,54 +367,59 @@
     <section class="section-pad theme-dark" id="matricula">
         <div class="container">
             <div class="cta-wrapper">
-                <h2 style="font-size: 3rem; margin-bottom: 1rem;">Fale com um <span class="text-highlight">Mentor</span></h2>
+                <h2 style="font-size: 3rem; margin-bottom: 1rem;">Agende com um <span class="text-highlight">Mentor</span></h2>
                 <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 2rem;">
-                    Preencha seus dados e entraremos em contato para uma análise de perfil gratuita.
+                    Preencha seus dados e receba uma ligação estratégica.
                 </p>
-                
                 <form class="form-inline">
                     <input type="email" placeholder="Seu melhor e-mail corporativo">
                     <button type="button">SOLICITAR CONTATO</button>
                 </form>
-                
-                <p style="margin-top: 20px; font-size: 0.85rem; opacity: 0.6;">
-                    <i class="ph ph-lock-key"></i> Seus dados estão 100% seguros.
-                </p>
             </div>
         </div>
     </section>
 
-    <footer style="background: #000; padding: 4rem 0; text-align: center; border-top: 1px solid #222;">
+    <footer>
         <div class="container">
-            <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-09-946x1024.png" alt="Live" style="height: 60px; margin: 0 auto 20px; opacity: 0.7;">
-            <p style="color: #666; margin-bottom: 2rem;">Ecossistema de Liderança & Vendas.</p>
-            <div style="font-size: 0.85rem;">
-                <span style="color: #444;">© 2025 Ecossistema Live.</span>
-                <a href="#" style="color: #666; margin-left: 15px;">Termos</a>
-                <a href="#" style="color: #666; margin-left: 15px;">Privacidade</a>
-            </div>
+            <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-09-946x1024.png" alt="Live" style="height: 60px; margin-bottom: 20px; opacity: 0.7;">
+            <p>© 2025 Ecossistema Live. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // Lógica do Carrossel
-        function scrollMentors(direction) {
-            const track = document.getElementById('mentorsTrack');
-            const cardWidth = 352; // Largura do card (320) + gap (32)
-            track.scrollBy({ left: cardWidth * direction, behavior: 'smooth' });
+        const track = document.getElementById('mentorsTrack');
+        let autoScrollSpeed = 0.5; // Velocidade (pixels por frame)
+        let isHovered = false;
+        let scrollPos = 0;
+
+        // Duplicar o conteúdo para criar o efeito de loop infinito real
+        const content = track.innerHTML;
+        track.innerHTML = content + content; // Duplica os cards
+
+        function animateScroll() {
+            if (!isHovered) {
+                scrollPos += autoScrollSpeed;
+                
+                // Se chegou na metade (fim do conteúdo original), reseta para o início
+                if (scrollPos >= track.scrollWidth / 2) {
+                    scrollPos = 0;
+                }
+                
+                track.scrollLeft = scrollPos;
+            }
+            requestAnimationFrame(animateScroll);
         }
 
-        // Efeito de Vidro no Header ao rolar
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.borderBottom = '1px solid rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.9)';
-                header.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-            }
-        });
+        // Inicia a animação
+        animateScroll();
+
+        // Pausa no hover
+        track.addEventListener('mouseenter', () => isHovered = true);
+        track.addEventListener('mouseleave', () => isHovered = false);
+        
+        // Suporte a touch no mobile (pausa ao tocar)
+        track.addEventListener('touchstart', () => isHovered = true);
+        track.addEventListener('touchend', () => isHovered = false);
     </script>
 
 </body>
