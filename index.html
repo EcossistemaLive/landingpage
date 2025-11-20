@@ -3,642 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live - Liderança & Vendas | Ecossistema Antifrágil</title>
+    <title>Live - Liderança & Vendas | Ecossistema de Elite</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* --- VARIAVEIS & TOKENS --- */
+        /* --- TOKENS VISUAIS (ESTILO ONM/HIGH TICKET) --- */
         :root {
-            --bg-dark: #06192a;         /* Azul Petróleo (Base) */
-            --bg-darker: #020b14;       /* Quase Preto (Contraste) */
-            --bg-card: #0A243D;         /* Card Padrão */
-            --neon-green: #00e800;      /* Destaque Vibrante */
+            --bg-black: #050505;        /* Preto Quase Absoluto */
+            --bg-brand: #06192a;        /* Azul Live Institucional */
+            --bg-card: #0f1f2e;         /* Contraste Sutil */
+            --neon-green: #00e800;      /* Ação / Destaque */
             --text-white: #ffffff;
-            --text-gray: #cfd4da;
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --glow: 0 0 25px rgba(0, 232, 0, 0.3);
-            --font-main: 'Poppins', sans-serif;
+            --text-gray: #a0a0a0;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
         }
 
-        /* --- ANIMAÇÕES DINÂMICAS --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(0, 232, 0, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 232, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 232, 0, 0); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- RESET --- */
+        /* --- RESET E BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
         body {
-            background-color: var(--bg-dark);
-            font-family: var(--font-main);
+            background-color: var(--bg-black);
+            font-family: var(--font-body);
             color: var(--text-white);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        img { max-width: 100%; display: block; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+        h1, h2, h3, h4 {
+            font-family: var(--font-head);
+            letter-spacing: -0.5px;
+            color: var(--text-white);
+        }
 
-        /* --- UTILITARIOS --- */
+        p { color: var(--text-gray); font-weight: 300; }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; transition: 0.3s; }
+
+        /* --- COMPONENTES DE UI --- */
         .container {
-            max-width: 1200px;
+            max-width: 1100px; /* Container mais estreito para leitura focada */
             margin: 0 auto;
             padding: 0 1.5rem;
         }
+
+        /* Títulos de Seção (Estilo ONM) */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
         
-        .text-neon { color: var(--neon-green); }
-        .text-center { text-align: center; }
-        
-        /* Botões Estilo Novo Mercado (Sólidos e Diretos) */
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .text-highlight { color: var(--neon-green); }
+
+        /* Botões "Pill" (Arredondados e Chamativos) */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 32px;
-            border-radius: 8px; /* Bordas menos arredondadas, mais sérias */
+            display: inline-block;
+            padding: 18px 40px; /* Botão "Vertical" (Alto) */
+            border-radius: 50px;
+            font-family: var(--font-head);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
         }
 
         .btn-primary {
-            background: var(--neon-green);
-            color: #000; /* Contraste preto no verde */
+            background-color: var(--neon-green);
+            color: #000;
             border: 2px solid var(--neon-green);
-            box-shadow: var(--glow);
+            box-shadow: 0 0 20px rgba(0, 232, 0, 0.2);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(0, 232, 0, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 232, 0, 0.4);
         }
 
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glass);
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
             color: var(--text-white);
-            backdrop-filter: blur(5px);
         }
 
-        .btn-glass:hover {
-            border-color: var(--neon-green);
-            color: var(--neon-green);
+        .btn-outline:hover {
+            border-color: var(--text-white);
+            background: rgba(255,255,255,0.05);
         }
 
-        /* --- SEÇÕES (CONTRASTE DE FUNDO) --- */
-        .section-dark { background-color: var(--bg-dark); }
-        .section-darker { background-color: var(--bg-darker); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); }
-        .section-gradient { 
-            background: radial-gradient(circle at center, #0f2e4d 0%, var(--bg-dark) 100%); 
-        }
-        .section-pad { padding: 5rem 0; }
+        /* --- SEÇÕES DE ALTO CONTRASTE --- */
+        .bg-black { background-color: var(--bg-black); }
+        .bg-brand { background-color: var(--bg-brand); }
+        .section-pad { padding: 6rem 0; }
 
         /* --- HEADER --- */
         header {
             position: fixed;
-            top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(6, 25, 42, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glass);
-            padding: 1rem 0;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.2rem 0;
         }
 
-        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 40px; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { font-size: 0.9rem; font-weight: 500; opacity: 0.8; }
-        .nav-links a:hover { opacity: 1; color: var(--neon-green); }
+        .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 42px; }
+        .nav-menu { display: flex; gap: 2.5rem; }
+        .nav-menu a { font-weight: 500; color: #ccc; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-menu a:hover { color: var(--neon-green); }
 
-        /* --- HERO (DINAMISMO) --- */
+        /* --- HERO SECTION --- */
         .hero {
-            padding-top: 160px;
-            padding-bottom: 80px;
-            position: relative;
-            /* Textura de cubos sutil no fundo */
-            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-            background-attachment: fixed;
+            padding-top: 180px;
+            padding-bottom: 100px;
+            text-align: center;
+            background: radial-gradient(circle at center, #112d45 0%, #050505 70%);
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .hero-content { max-width: 900px; margin: 0 auto; }
+
+        .tagline {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 232, 0, 0.1);
+            color: var(--neon-green);
+            border: 1px solid rgba(0, 232, 0, 0.3);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            font-weight: 800;
+            color: #fff;
         }
 
-        /* Imagens Flutuantes */
-        .dynamic-gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            position: relative;
+        .hero p {
+            font-size: 1.25rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .dynamic-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
+        /* Grid de Ícones Hero */
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
         
-        /* Efeito de movimento alternado */
-        .dynamic-card:nth-child(1) { animation: float 6s ease-in-out infinite; }
-        .dynamic-card:nth-child(2) { animation: float 6s ease-in-out infinite 1s; margin-top: 3rem; }
-        .dynamic-card:nth-child(3) { animation: float 6s ease-in-out infinite 2s; margin-top: -3rem; }
-        .dynamic-card:nth-child(4) { animation: float 6s ease-in-out infinite 3s; }
-
-        .dynamic-card img {
-            transition: transform 0.5s;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .dynamic-card:hover img { transform: scale(1.1); }
-
-        /* --- ESPECIALISTAS (LAYOUT ESTILO ONM) --- */
-        .specialists-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Cards mais largos */
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .specialist-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-            group: hover;
-        }
-
-        .specialist-card:hover {
-            border-color: var(--neon-green);
-            transform: translateY(-10px);
-        }
-
-        .specialist-img-wrapper {
-            height: 300px; /* Altura fixa para padronizar */
-            overflow: hidden;
-            position: relative;
-        }
-
-        .specialist-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-            filter: grayscale(100%); /* Começa P&B estilo "sério" */
-        }
-
-        .specialist-card:hover .specialist-img-wrapper img {
-            transform: scale(1.05);
-            filter: grayscale(0%); /* Ganha cor no hover */
-        }
-
-        .specialist-info {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-glass);
-            background: linear-gradient(to bottom, var(--bg-card), #051320);
-        }
-
-        .specialist-role {
-            color: var(--neon-green);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .specialist-name {
-            font-size: 1.2rem;
-            font-weight: 600;
+        .feature-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             color: #fff;
-            margin-bottom: 5px;
+            font-weight: 500;
         }
 
-        .course-name {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            font-style: italic;
-        }
-
-        /* --- BENTO GRID (CONCEITOS) --- */
+        /* --- QUADROS ALINHADOS (BENTO) --- */
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
-        .bento-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 2rem;
+        .bento-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 2.5rem;
+            border-radius: 16px; /* Bordas arredondadas */
+            text-align: center; /* Centralizado estilo ONM */
             transition: 0.3s;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
         }
 
-        .bento-item:hover { background: rgba(255,255,255,0.05); border-color: var(--neon-green); }
-
-        /* Grid Layout Complexo */
-        .bento-large { grid-column: span 7; }
-        .bento-small { grid-column: span 5; }
-        .bento-medium { grid-column: span 6; }
+        .bento-card:hover {
+            border-color: var(--neon-green);
+            background: #152a3d;
+            transform: translateY(-5px);
+        }
 
         .bento-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--neon-green);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* --- VIDEO SECTION (CONTRASTE ESCURO) --- */
-        .video-container {
+        .bento-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .bento-card p { font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- ESPECIALISTAS (CORES VIVAS & MOVIMENTO) --- */
+        .mentors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .mentor-card {
             position: relative;
-            max-width: 1000px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #121212;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .mentor-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .mentor-img-box {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .mentor-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* REMOVIDO O FILTRO P&B */
+            filter: none; 
+            transition: transform 0.6s ease;
+        }
+
+        .mentor-card:hover .mentor-img-box img {
+            transform: scale(1.1); /* Zoom suave */
+        }
+
+        .mentor-info {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(0deg, #000 0%, #121212 100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .mentor-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .mentor-area {
+            color: var(--neon-green);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- JORNADA (PATH) --- */
+        .journey-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
             margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 0 100px rgba(0, 232, 0, 0.15);
         }
 
-        .video-ratio {
-            padding-bottom: 56.25%;
-            position: relative;
-            background: #000;
+        .journey-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.03);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--neon-green);
+            transition: 0.3s;
         }
 
-        .video-ratio iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+        .journey-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(10px);
         }
 
-        /* --- FORMULÁRIO (DESTAQUE) --- */
-        .cta-box {
-            background: linear-gradient(120deg, var(--bg-card) 0%, #000 100%);
-            border-radius: 20px;
+        .journey-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.1);
+            margin-right: 1.5rem;
+            font-family: var(--font-head);
+        }
+
+        .journey-text h3 { font-size: 1.3rem; margin-bottom: 5px; }
+
+        /* --- CTA FINAL --- */
+        .cta-section {
+            background: linear-gradient(180deg, var(--bg-brand) 0%, #000 100%);
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .form-wrap {
+            background: #fff;
             padding: 3rem;
-            border: 1px solid var(--neon-green);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0,232,0,0.1) 0%, transparent 60%);
-            animation: pulse-glow 5s infinite;
-            pointer-events: none;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 3rem auto 0;
+            color: #000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        /* --- RESPONSIVO --- */
-        @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-list { text-align: left; display: inline-block; margin-top: 1rem; }
-            .dynamic-gallery { margin-top: 3rem; }
-            
-            .bento-item { grid-column: span 12; } /* Grid vira coluna no mobile */
-            .specialists-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-            
-            .nav-links { display: none; }
+        .form-wrap h3 { color: #000; margin-bottom: 1.5rem; }
+
+        .input-group { margin-bottom: 1rem; text-align: left; }
+        .input-group label { font-size: 0.8rem; font-weight: 700; color: #555; display: block; margin-bottom: 5px; }
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        .input-group input:focus { border-color: var(--bg-brand); outline: none; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .journey-item { flex-direction: row; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container nav-flex">
+        <div class="container nav-wrap">
             <a href="#" class="logo">
-                <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-34.png" alt="Live Logo">
+                <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-34.png" alt="Live">
             </a>
-            <nav class="nav-links">
+            <nav class="nav-menu">
                 <a href="#ecossistema">Ecossistema</a>
-                <a href="#especialistas">Mentores</a>
+                <a href="#mentores">Mentores</a>
                 <a href="#jornada">Jornada</a>
-                <a href="#contato">Contato</a>
+                <a href="#contato">Agendar</a>
             </nav>
-            <a href="#matricula" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.85rem;">Comece Agora</a>
+            <a href="#matricula" class="btn btn-primary" style="padding: 12px 30px; font-size: 0.8rem;">Área do Aluno</a>
         </div>
     </header>
 
-    <section class="section-pad hero" id="ecossistema">
-        <div class="container hero-grid">
-            <div style="z-index: 1;">
-                <span class="text-neon" style="font-weight: 700; letter-spacing: 1px;">BEM-VINDO AO ECOSSISTEMA</span>
-                <h1>Liderança <br><span class="text-neon">Antifrágil</span></h1>
-                <p style="font-size: 1.15rem; margin-bottom: 2rem; color: var(--text-gray); max-width: 500px;">
-                    A única coisa entre você e a antifragilidade é a decisão de agir. Navegue a complexidade do mundo atual gerindo pessoas, processos e negócios.
-                </p>
-                
-                <ul class="hero-list" style="margin-bottom: 2.5rem;">
-                    <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="ph ph-check-circle text-neon" style="margin-right: 10px; font-size: 1.2rem;"></i> +5.000 profissionais transformados</li>
-                    <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="ph ph-check-circle text-neon" style="margin-right: 10px; font-size: 1.2rem;"></i> Metodologia prática e validada</li>
-                    <li style="margin-bottom: 10px; display: flex; align-items: center;"><i class="ph ph-check-circle text-neon" style="margin-right: 10px; font-size: 1.2rem;"></i> Networking de alto nível</li>
-                </ul>
-
-                <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
-            </div>
-
-            <div class="dynamic-gallery">
-                <div class="dynamic-card">
-                    <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1-1.png" alt="Aula Live">
-                </div>
-                <div class="dynamic-card">
-                    <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/3-1.png" alt="Networking">
-                </div>
-                <div class="dynamic-card">
-                    <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/4-1.png" alt="Mentoria">
-                </div>
-                <div class="dynamic-card">
-                    <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5-1.png" alt="Evento">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-pad section-darker">
-        <div class="container text-center">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Por que o modelo tradicional <span class="text-neon">faliu?</span></h2>
-            <p style="max-width: 700px; margin: 0 auto 3rem; color: var(--text-gray);">
-                Ser líder hoje exige mais do que técnica. Exige inteligência emocional, estratégia e a capacidade de crescer no caos. Veja como transformamos carreiras.
-            </p>
-            
-            <div class="video-container">
-                <div class="video-ratio">
-                    <iframe src="https://www.youtube.com/embed/XHOmBV4js_E" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-pad">
+    <section class="hero" id="ecossistema">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 3rem;">
-                <h2 style="font-size: 2.5rem;">Os Pilares da <span class="text-neon">Live</span></h2>
+            <div class="hero-content">
+                <span class="tagline">Desenvolvimento de Elite</span>
+                <h1>Liderança <span class="text-highlight">Antifrágil</span></h1>
+                
+                <div class="hero-features">
+                    <div class="feature-pill"><i class="ph ph-check-circle text-highlight"></i> +5.000 Líderes</div>
+                    <div class="feature-pill"><i class="ph ph-check-circle text-highlight"></i> Metodologia Prática</div>
+                    <div class="feature-pill"><i class="ph ph-check-circle text-highlight"></i> Networking Nível A</div>
+                </div>
+
+                <p>
+                    A única coisa entre você e a antifragilidade é a decisão de agir. 
+                    Navegue a complexidade do mundo atual gerindo pessoas, processos e negócios com maestria.
+                </p>
+
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
+                    <a href="#video" class="btn btn-outline">Ver o Vídeo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-pad bg-black" id="video">
+        <div class="container">
+            <div class="section-title">
+                <h2>A Verdade Sobre <span class="text-highlight">Liderança</span></h2>
+                <p>Esqueça a teoria de palco. Veja como o mercado real opera.</p>
+            </div>
+            
+            <div style="max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 0 80px rgba(0, 232, 0, 0.15); border: 1px solid #222;">
+                <div style="padding-bottom: 56.25%; position: relative; background: #000;">
+                    <iframe src="https://www.youtube.com/embed/XHOmBV4js_E" style="position:absolute; top:0; left:0; width:100%; height:100%;" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-pad bg-brand">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pilares do <span class="text-highlight">Ecossistema</span></h2>
+                <p>Não entregamos apenas cursos. Entregamos clareza estratégica.</p>
             </div>
 
             <div class="bento-grid">
-                <div class="bento-item bento-large">
-                    <div>
-                        <i class="ph ph-compass bento-icon"></i>
-                        <h3>Navegação na Crise</h3>
-                    </div>
-                    <p style="color: var(--text-gray); margin-top: 1rem;">
-                        O Ecossistema Live atua como seu "farol", oferecendo a clareza necessária para navegar o mundo de hoje. Não seja pego de surpresa pelas mudanças do mercado.
-                    </p>
-                    <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/05/bussola.png" style="height: 100px; width: auto; align-self: flex-end; opacity: 0.8; margin-top: 1rem;">
+                <div class="bento-card">
+                    <i class="ph ph-compass bento-icon"></i>
+                    <h3>Navegação na Crise</h3>
+                    <p>Atuamos como seu "farol" e "porto seguro". Tenha os meios de ação necessários para lidar com a complexidade e gerir no caos.</p>
                 </div>
 
-                <div class="bento-item bento-small">
-                    <i class="ph ph-strategy bento-icon"></i>
+                <div class="bento-card">
+                    <i class="ph ph-chart-polar bento-icon"></i>
+                    <h3>Desenvolvimento 360°</h3>
+                    <p>Centralizamos expertises essenciais em uma única plataforma. Conhecimento que se conecta e multiplica resultados reais.</p>
+                </div>
+
+                <div class="bento-card">
+                    <i class="ph ph-shield-check bento-icon"></i>
                     <h3>Liderança Antifrágil</h3>
-                    <p style="color: var(--text-gray);">
-                        Prepare-se para lidar com desafios diários. O líder antifrágil não apenas resiste, ele melhora com o estresse.
-                    </p>
-                </div>
-
-                <div class="bento-item bento-medium">
-                    <i class="ph ph-chart-line-up bento-icon"></i>
-                    <h3>Desenvolvimento Contínuo</h3>
-                    <p style="color: var(--text-gray);">
-                        Pessoas, processos e ferramentas em um só lugar. Uma plataforma viva de aprendizado.
-                    </p>
-                </div>
-
-                <div class="bento-item bento-medium" style="background: linear-gradient(45deg, var(--bg-card), #002200);">
-                    <i class="ph ph-users-three bento-icon"></i>
-                    <h3>Comunidade de Elite</h3>
-                    <p style="color: var(--text-gray);">
-                        Esteja ao lado de quem joga o jogo alto. O ambiente molda o líder.
-                    </p>
+                    <p>Prepare-se para lidar com desafios diários e crescer com eles. Transforme a pressão em combustível para performance.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-pad section-gradient" id="especialistas">
+    <section class="section-pad bg-black" id="mentores">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 4rem;">
-                <span class="text-neon" style="font-weight: 700; text-transform: uppercase;">Quem ensina</span>
-                <h2 style="font-size: 2.8rem; margin-top: 0.5rem;">Nossos <span class="text-white">Mentores</span></h2>
-                <p style="color: var(--text-gray);">Especialistas de campo, não apenas de palco.</p>
+            <div class="section-title">
+                <h2>Nossos <span class="text-highlight">Mentores</span></h2>
+                <p>Aprenda com quem tem "skin in the game".</p>
             </div>
 
-            <div class="specialists-grid">
-                <div class="specialist-card">
-                    <div class="specialist-img-wrapper">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1.png" alt="Especialista 1">
+            <div class="mentors-grid">
+                <div class="mentor-card">
+                    <div class="mentor-img-box">
+                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1.png" alt="Mentor Live">
                     </div>
-                    <div class="specialist-info">
-                        <span class="specialist-role">Gestão Comercial</span>
-                        <h3 class="specialist-name">Carlos Mendes</h3>
-                        <p class="course-name">Curso: Máquina de Vendas B2B</p>
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Nome do Mentor</h3> <span class="mentor-area">Gestão Comercial</span>
                     </div>
                 </div>
 
-                <div class="specialist-card">
-                    <div class="specialist-img-wrapper">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5.png" alt="Especialista 2">
+                <div class="mentor-card">
+                    <div class="mentor-img-box">
+                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5.png" alt="Mentor Live">
                     </div>
-                    <div class="specialist-info">
-                        <span class="specialist-role">Liderança</span>
-                        <h3 class="specialist-name">Ana Paula Souza</h3>
-                        <p class="course-name">Curso: Liderança Exponencial</p>
-                    </div>
-                </div>
-
-                <div class="specialist-card">
-                    <div class="specialist-img-wrapper">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/6.png" alt="Especialista 3">
-                    </div>
-                    <div class="specialist-info">
-                        <span class="specialist-role">Neurociência</span>
-                        <h3 class="specialist-name">Dr. Roberto Lima</h3>
-                        <p class="course-name">Curso: Cérebro de Alta Performance</p>
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <span class="mentor-area">Liderança Ágil</span>
                     </div>
                 </div>
 
-                <div class="specialist-card">
-                    <div class="specialist-img-wrapper">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/3.png" alt="Especialista 4">
+                <div class="mentor-card">
+                    <div class="mentor-img-box">
+                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/6.png" alt="Mentor Live">
                     </div>
-                    <div class="specialist-info">
-                        <span class="specialist-role">Marketing</span>
-                        <h3 class="specialist-name">Juliana Rangel</h3>
-                        <p class="course-name">Curso: Branding Pessoal</p>
-                    </div>
-                </div>
-                 <div class="specialist-card">
-                    <div class="specialist-img-wrapper">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/2.png" alt="Especialista 5">
-                    </div>
-                    <div class="specialist-info">
-                        <span class="specialist-role">Inovação</span>
-                        <h3 class="specialist-name">Ricardo Ferraz</h3>
-                        <p class="course-name">Curso: Gestão Ágil</p>
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <span class="mentor-area">Neurociência</span>
                     </div>
                 </div>
-                 <div class="specialist-card">
-                    <div class="specialist-img-wrapper">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/4.png" alt="Especialista 6">
+
+                <div class="mentor-card">
+                    <div class="mentor-img-box">
+                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/3.png" alt="Mentor Live">
                     </div>
-                    <div class="specialist-info">
-                        <span class="specialist-role">Finanças</span>
-                        <h3 class="specialist-name">Fernanda Costa</h3>
-                        <p class="course-name">Curso: Finanças para Executivos</p>
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <span class="mentor-area">Marketing e Branding</span>
+                    </div>
+                </div>
+
+                 <div class="mentor-card">
+                    <div class="mentor-img-box">
+                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/2.png" alt="Mentor Live">
+                    </div>
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <span class="mentor-area">Inovação</span>
+                    </div>
+                </div>
+
+                 <div class="mentor-card">
+                    <div class="mentor-img-box">
+                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/4.png" alt="Mentor Live">
+                    </div>
+                    <div class="mentor-info">
+                        <h3 class="mentor-name">Nome do Mentor</h3>
+                        <span class="mentor-area">Finanças</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-pad" id="jornada">
+    <section class="section-pad bg-brand" id="jornada">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 4rem;">
-                <h2>Sua Jornada de <span class="text-neon">Evolução</span></h2>
+            <div class="section-title">
+                <h2>Jornada <span class="text-highlight">Live</span></h2>
+                <p>O passo a passo para sair da estagnação.</p>
             </div>
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; text-align: center;">
-                <div style="flex: 1; min-width: 200px; padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-glass);">
-                    <span style="font-size: 3rem; color: var(--neon-green); font-weight: 800; opacity: 0.3;">01</span>
-                    <h3 style="margin: 10px 0;">Formação</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Base técnica sólida.</p>
-                </div>
-                <div style="flex: 1; min-width: 200px; padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-glass);">
-                    <span style="font-size: 3rem; color: var(--neon-green); font-weight: 800; opacity: 0.3;">02</span>
-                    <h3 style="margin: 10px 0;">Membros</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Conteúdo recorrente.</p>
-                </div>
-                <div style="flex: 1; min-width: 200px; padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-glass); border-bottom: 3px solid var(--neon-green);">
-                    <span style="font-size: 3rem; color: var(--neon-green); font-weight: 800; opacity: 1;">03</span>
-                    <h3 style="margin: 10px 0;">Mentoria</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Acompanhamento individual.</p>
-                </div>
-                <div style="flex: 1; min-width: 200px; padding: 1.5rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-glass);">
-                    <span style="font-size: 3rem; color: var(--neon-green); font-weight: 800; opacity: 0.3;">04</span>
-                    <h3 style="margin: 10px 0;">Conselho</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Networking de elite.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="section-pad" id="matricula">
-        <div class="container">
-            <div class="cta-box">
-                <div style="position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
-                    <div>
-                        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Agende com um <br><span class="text-neon">MENTOR</span></h2>
-                        <p style="color: var(--text-gray); margin-bottom: 2rem;">
-                            Não vendemos cursos, vendemos transformação. Preencha seus dados para uma análise de perfil gratuita.
-                        </p>
-                        <ul style="margin-bottom: 2rem;">
-                            <li style="margin-bottom: 10px;"><i class="ph ph-check text-neon"></i> Análise de momento de carreira</li>
-                            <li style="margin-bottom: 10px;"><i class="ph ph-check text-neon"></i> Direcionamento de trilha</li>
-                        </ul>
+            <div class="journey-list">
+                <div class="journey-item">
+                    <span class="journey-num">01</span>
+                    <div class="journey-text">
+                        <h3>Formação Live</h3>
+                        <p>Construa as bases do seu crescimento. Cursos, certificações e trilhas formativas.</p>
                     </div>
-
-                    <form style="background: rgba(0,0,0,0.3); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-glass);">
-                        <div style="margin-bottom: 1rem;">
-                            <label style="font-size: 0.8rem; color: var(--text-gray);">NOME COMPLETO</label>
-                            <input type="text" style="width: 100%; padding: 12px; margin-top: 5px; background: #020b14; border: 1px solid #333; color: #fff; border-radius: 6px;">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <label style="font-size: 0.8rem; color: var(--text-gray);">E-MAIL CORPORATIVO</label>
-                            <input type="email" style="width: 100%; padding: 12px; margin-top: 5px; background: #020b14; border: 1px solid #333; color: #fff; border-radius: 6px;">
-                        </div>
-                        <div style="margin-bottom: 2rem;">
-                            <label style="font-size: 0.8rem; color: var(--text-gray);">WHATSAPP</label>
-                            <input type="tel" style="width: 100%; padding: 12px; margin-top: 5px; background: #020b14; border: 1px solid #333; color: #fff; border-radius: 6px;">
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Solicitar Agendamento</button>
-                    </form>
+                </div>
+                <div class="journey-item">
+                    <span class="journey-num">02</span>
+                    <div class="journey-text">
+                        <h3>Área de Membros</h3>
+                        <p>Conteúdos exclusivos, aulas mensais e fórum de apoio com especialistas.</p>
+                    </div>
+                </div>
+                <div class="journey-item">
+                    <span class="journey-num">03</span>
+                    <div class="journey-text">
+                        <h3>Mentoria Individual</h3>
+                        <p>Acesso direto a mentores para diagnóstico e plano personalizado.</p>
+                    </div>
+                </div>
+                <div class="journey-item">
+                    <span class="journey-num">04</span>
+                    <div class="journey-text">
+                        <h3>Conselho de Líderes</h3>
+                        <p>Ápice do desenvolvimento. Suporte estratégico exclusivo e networking de alto nível.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="background-color: #000; padding: 4rem 0; border-top: 1px solid #1f2937; margin-top: 4rem;">
-        <div class="container text-center">
-            <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/GARANTIA-DE-7-DIAS.png" alt="Garantia" style="width: 100px; margin: 0 auto 1.5rem;">
-            <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 2rem;">
-                Garantia incondicional de 7 dias. Risco zero.
-            </p>
-            <div style="display: flex; justify-content: center; gap: 2rem; color: var(--text-gray); font-size: 0.8rem;">
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Termos de Uso</a>
-                <span>© 2025 Ecossistema Live</span>
+    <section class="cta-section section-pad" id="matricula">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fale com um <span class="text-highlight">Mentor</span></h2>
+                <p>Preencha seus dados para uma análise de perfil gratuita.</p>
+            </div>
+
+            <div class="form-wrap">
+                <h3>Aplicação para Mentoria</h3>
+                <form>
+                    <div class="input-group">
+                        <label>NOME COMPLETO</label>
+                        <input type="text" placeholder="Digite seu nome">
+                    </div>
+                    <div class="input-group">
+                        <label>E-MAIL CORPORATIVO</label>
+                        <input type="email" placeholder="seu@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label>WHATSAPP</label>
+                        <input type="tel" placeholder="(00) 00000-0000">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        ENVIAR APLICAÇÃO
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #000; padding: 3rem 0; border-top: 1px solid #111; text-align: center;">
+        <div class="container">
+            <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-09-946x1024.png" alt="Live" style="height: 50px; margin: 0 auto 20px;">
+            <p style="font-size: 0.9rem; color: #555;">&copy; 2025 Ecossistema Live. Todos os direitos reservados.</p>
+            <div style="margin-top: 20px;">
+                <a href="#" style="color: #555; margin: 0 10px; font-size: 0.8rem;">Termos de Uso</a>
+                <a href="#" style="color: #555; margin: 0 10px; font-size: 0.8rem;">Privacidade</a>
             </div>
         </div>
     </footer>
-
-    <script>
-        // Animação simples de "Scroll Reveal"
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.specialist-card, .bento-item');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[i].getBoundingClientRect().top;
-                var revealpoint = 150;
-                if (revealtop < windowheight - revealpoint) {
-                    reveals[i].style.opacity = '1';
-                    reveals[i].style.transform = 'translateY(0)';
-                }
-            }
-        }
-        
-        // Inicializa estilo para animação
-        document.querySelectorAll('.specialist-card, .bento-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-        });
-    </script>
 
 </body>
 </html>
