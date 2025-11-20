@@ -12,28 +12,16 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* --- DESIGN TOKENS --- */
+        /* --- TOKENS --- */
         :root {
-            /* Paleta Dark */
             --bg-black: #0a0a0a;
-            --bg-overlay: rgba(6, 25, 42, 0.85);
-            
-            /* Paleta Light (Baseada no Guia Original) */
-            --bg-light: #f4f4f6;       /* Cinza Claro Fundo */
-            --bg-white: #ffffff;       /* Cards no Claro */
-            
-            /* Acentos */
+            --bg-light: #f4f4f6;
+            --bg-white: #ffffff;
             --neon-green: #00e800;
-            --text-dark: #1a1a1a;      /* Texto no Fundo Claro */
-            --text-light: #ffffff;     /* Texto no Fundo Escuro */
-            --text-gray: #666666;
-            
-            /* Efeitos */
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
             --shadow-soft: 0 20px 40px rgba(0,0,0,0.08);
             --glow: 0 0 30px rgba(0, 232, 0, 0.3);
-            --radius-lg: 24px;
-            --radius-pill: 50px;
-            
             --font-head: 'Montserrat', sans-serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -41,31 +29,18 @@
         /* --- BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-            color: var(--text-dark);
-        }
-
+        body { font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; color: var(--text-dark); }
         h1, h2, h3 { font-family: var(--font-head); letter-spacing: -0.5px; }
         img { max-width: 100%; display: block; }
         a { text-decoration: none; transition: 0.3s; }
 
-        /* --- UTILITÁRIOS DE SEÇÃO --- */
-        .section-pad { padding: 6rem 0; position: relative; overflow: hidden; }
-        
-        /* Tema Escuro */
+        /* --- UTILITÁRIOS --- */
+        .section-pad { padding: 6rem 0; position: relative; }
         .theme-dark { background-color: var(--bg-black); color: var(--text-light); }
         .theme-dark h2, .theme-dark h3 { color: var(--text-light); }
         .theme-dark p { color: #a0a0a0; }
-        
-        /* Tema Claro */
         .theme-light { background-color: var(--bg-light); color: var(--text-dark); }
         .theme-light h2, .theme-light h3 { color: #06192a; }
-        .theme-light p { color: var(--text-gray); }
-
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
         .text-highlight { color: var(--neon-green); }
         .text-center { text-align: center; }
@@ -73,202 +48,144 @@
         /* --- BOTÕES --- */
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 16px 36px; border-radius: var(--radius-pill);
-            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-            cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem;
+            padding: 16px 36px; border-radius: 50px; font-weight: 700; 
+            text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem;
         }
-        
         .btn-primary {
-            background: var(--neon-green); color: #000;
-            box-shadow: var(--glow); border: 2px solid var(--neon-green);
+            background: var(--neon-green); color: #000; border: 2px solid var(--neon-green);
+            box-shadow: var(--glow);
         }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0, 232, 0, 0.5); }
-        
-        .btn-outline-light {
-            border: 2px solid rgba(0,0,0,0.1); color: var(--text-dark);
-        }
-        .btn-outline-light:hover { border-color: var(--text-dark); background: transparent; }
 
-        /* --- HEADER --- */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 1rem 0;
-        }
-        .dark-header header { background: rgba(6, 25, 42, 0.9); border-bottom: 1px solid rgba(255,255,255,0.1); }
-        
-        .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 40px; }
-        .nav-menu { display: flex; gap: 2rem; }
-        .nav-menu a { font-weight: 600; color: #06192a; font-size: 0.9rem; text-transform: uppercase; }
-        .nav-menu a:hover { color: var(--neon-green); }
-
-        /* --- HERO COM VIDEO BACKGROUND --- */
+        /* --- HERO (COM VIDEO) --- */
         .hero {
             position: relative; height: 100vh; min-height: 700px;
             display: flex; align-items: center; justify-content: center;
             text-align: center; color: white;
         }
-
         .video-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; z-index: 0; filter: brightness(0.4);
+            object-fit: cover; z-index: 0; filter: brightness(0.3);
         }
-
-        /* Overlay gradiente para leitura */
-        .hero::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle, transparent 0%, #06192a 90%);
-            z-index: 1;
-        }
-
-        .hero-content { position: relative; z-index: 3; max-width: 900px; animation: fadeUp 1s ease-out; }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; animation: fadeUp 1s ease-out; }
+        .hero h1 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem; }
         
-        .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .hero p {
-            font-size: 1.3rem; margin-bottom: 2.5rem; color: rgba(255,255,255,0.9);
-            max-width: 700px; margin-left: auto; margin-right: auto;
-        }
-
-        /* --- MARQUEE (TICKER) --- */
-        .marquee-section {
-            background: var(--neon-green); color: #000; padding: 15px 0;
-            overflow: hidden; white-space: nowrap; position: relative; z-index: 5;
-        }
-        
-        .marquee-content {
-            display: inline-block; animation: marquee 20s linear infinite;
-        }
-        
-        .marquee-item {
-            font-family: var(--font-head); font-weight: 900; font-size: 1.5rem;
-            text-transform: uppercase; margin: 0 30px;
-        }
-
+        /* --- MARQUEE --- */
+        .marquee-section { background: var(--neon-green); color: #000; padding: 15px 0; overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        .marquee-item { font-family: var(--font-head); font-weight: 900; font-size: 1.5rem; margin: 0 30px; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- PILARES (FUNDO CLARO) --- */
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem; margin-top: 3rem;
-        }
-
+        /* --- PILARES (GRID) --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .light-card {
-            background: var(--bg-white);
-            border-radius: var(--radius-lg);
-            padding: 3rem 2rem;
-            box-shadow: var(--shadow-soft);
-            transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);
-            text-align: left;
+            background: var(--bg-white); border-radius: 24px; padding: 3rem 2rem;
+            box-shadow: var(--shadow-soft); transition: 0.3s; border: 1px solid rgba(0,0,0,0.05);
         }
-
-        .light-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-            border-color: var(--neon-green);
-        }
-
+        .light-card:hover { transform: translateY(-10px); border-color: var(--neon-green); }
         .icon-box {
-            width: 60px; height: 60px; background: #ebfbee;
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            width: 60px; height: 60px; background: #ebfbee; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
             font-size: 1.8rem; color: var(--neon-green); margin-bottom: 1.5rem;
         }
 
-        /* --- MENTORES (FUNDO ESCURO) --- */
-        .mentor-card {
-            background: #0f1f2e; border-radius: 16px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1); position: relative;
-            transition: 0.3s;
+        /* --- NOVO CARROSSEL DE MENTORES --- */
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
-        
-        .mentor-card:hover { border-color: var(--neon-green); transform: scale(1.02); }
 
-        .mentor-img { height: 380px; position: relative; overflow: hidden; }
+        /* Container deslizante */
+        .mentors-track {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 2rem 1rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        .mentors-track::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+
+        /* Card do Mentor (Fixo) */
+        .mentor-card {
+            min-width: 300px; /* Tamanho fixo do card */
+            max-width: 300px;
+            background: #0f1f2e;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+            position: relative;
+            scroll-snap-align: start;
+        }
+
+        .mentor-card:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .mentor-img { height: 350px; overflow: hidden; position: relative; }
         .mentor-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .mentor-card:hover .mentor-img img { transform: scale(1.1); }
 
-        .mentor-badge {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            padding: 15px; background: linear-gradient(to top, #000 0%, transparent 100%);
+        .mentor-details { padding: 1.5rem; background: linear-gradient(to top, #0a0a0a, #0f1f2e); position: relative; z-index: 2; }
+        .mentor-role { color: var(--neon-green); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .mentor-course { font-size: 0.85rem; color: #888; margin-top: 5px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
+
+        /* Botões de Navegação do Carrossel */
+        .nav-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             color: white;
-        }
-        
-        .mentor-details { padding: 1.5rem; }
-        .mentor-role { color: var(--neon-green); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px;}
-
-        /* --- JORNADA (FUNDO CLARO) --- */
-        .timeline-modern {
-            position: relative; max-width: 900px; margin: 0 auto;
-        }
-        
-        .timeline-node {
-            display: flex; gap: 2rem; margin-bottom: 3rem; position: relative;
-            background: white; padding: 2rem; border-radius: 20px;
-            box-shadow: var(--shadow-soft); border-left: 5px solid var(--neon-green);
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
             transition: 0.3s;
+            z-index: 5;
+            backdrop-filter: blur(5px);
         }
+        .nav-btn:hover { background: var(--neon-green); color: black; border-color: var(--neon-green); }
+        .nav-btn.prev { margin-right: 10px; }
+        .nav-btn.next { margin-left: 10px; }
+        
+        /* Esconde botões em mobile onde o touch é nativo */
+        @media(max-width: 768px) { .nav-btn { display: none; } }
 
+        /* --- JORNADA --- */
+        .timeline-node {
+            display: flex; gap: 2rem; margin-bottom: 2rem; background: white; padding: 2rem;
+            border-radius: 20px; box-shadow: var(--shadow-soft); border-left: 5px solid var(--neon-green);
+            transition: 0.3s; align-items: center;
+        }
         .timeline-node:hover { transform: translateX(10px); }
+        .node-num { font-size: 3.5rem; font-weight: 900; color: #f0f0f0; font-family: var(--font-head); line-height: 1; }
 
-        .node-num {
-            font-size: 4rem; font-weight: 900; color: #f0f0f0;
-            line-height: 0.8; font-family: var(--font-head);
-        }
-
-        /* --- CTA FINAL --- */
+        /* --- CTA --- */
         .cta-wrapper {
             background: radial-gradient(circle at center, #1a3b55 0%, #06192a 100%);
-            border-radius: 30px; padding: 5rem 2rem; text-align: center;
-            color: white; position: relative; overflow: hidden;
+            border-radius: 30px; padding: 5rem 2rem; text-align: center; color: white; margin-top: 4rem;
         }
-        
         .form-inline {
-            background: white; padding: 10px; border-radius: 50px;
-            display: flex; max-width: 600px; margin: 2rem auto 0;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background: white; padding: 8px; border-radius: 50px; display: flex; 
+            max-width: 600px; margin: 2rem auto 0;
         }
-        
-        .form-inline input {
-            flex: 1; border: none; padding: 0 20px; font-size: 1rem; outline: none;
-            border-radius: 50px;
-        }
-        
+        .form-inline input { flex: 1; border: none; padding: 0 20px; font-size: 1rem; outline: none; border-radius: 50px; }
         .form-inline button {
             padding: 12px 30px; border-radius: 40px; border: none;
             background: var(--neon-green); font-weight: 700; cursor: pointer;
         }
 
-        /* Responsivo */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .form-inline { flex-direction: column; background: transparent; padding: 0; box-shadow: none; }
-            .form-inline input { padding: 15px; margin-bottom: 10px; border-radius: 10px; }
-            .form-inline button { width: 100%; padding: 15px; }
-            .nav-menu { display: none; }
-        }
+        /* --- FOOTER --- */
+        footer { background: #000; color: #666; padding: 4rem 0; text-align: center; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
-
-    <header>
-        <div class="container nav-wrap">
-            <a href="#" class="logo">
-                <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-34.png" alt="Live Logo">
-            </a>
-            <nav class="nav-menu">
-                <a href="#pilares">O Ecossistema</a>
-                <a href="#mentores">Mentores</a>
-                <a href="#jornada">Sua Jornada</a>
-            </nav>
-            <a href="#matricula" class="btn btn-primary" style="padding: 12px 25px; font-size: 0.8rem;">Área do Membro</a>
-        </div>
-    </header>
 
     <section class="hero">
         <video class="video-bg" autoplay muted loop playsinline poster="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1-1.png">
@@ -277,134 +194,159 @@
 
         <div class="hero-content">
             <div style="margin-bottom: 20px;">
-                <span style="background: rgba(0,232,0,0.2); color: #00ff00; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; border: 1px solid #00ff00;">NOVA ERA DA LIDERANÇA</span>
+                <span style="background: rgba(0,232,0,0.1); color: #00ff00; padding: 8px 20px; border-radius: 30px; font-weight: 700; font-size: 0.8rem; border: 1px solid #00ff00; text-transform: uppercase; letter-spacing: 1px;">O Novo Padrão</span>
             </div>
             <h1>Liderança <br><span class="text-highlight">Antifrágil</span></h1>
             <p>
                 A única coisa entre você e a antifragilidade é a decisão de agir. 
-                Navegue a complexidade do mundo atual gerindo pessoas, processos e negócios com a metodologia dos maiores players do mercado.
+                Navegue a complexidade do mundo atual gerindo pessoas, processos e negócios.
             </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
-                <a href="#video" class="btn" style="background: rgba(255,255,255,0.1); border: 1px solid white; color: white; backdrop-filter: blur(5px);">Ver o Manifesto</a>
-            </div>
+            <a href="#matricula" class="btn btn-primary">Quero Evoluir Agora</a>
         </div>
     </section>
 
     <div class="marquee-section">
         <div class="marquee-content">
-            <span class="marquee-item">LIDERANÇA ANTIFRÁGIL</span>
-            <span class="marquee-item">•</span>
-            <span class="marquee-item">VENDAS B2B</span>
-            <span class="marquee-item">•</span>
-            <span class="marquee-item">GESTÃO DE PROCESSOS</span>
-            <span class="marquee-item">•</span>
-            <span class="marquee-item">NETWORKING DE ELITE</span>
-            <span class="marquee-item">•</span>
-            <span class="marquee-item">INOVAÇÃO</span>
-            <span class="marquee-item">•</span>
-            <span class="marquee-item">LIDERANÇA ANTIFRÁGIL</span>
+            <span class="marquee-item">LIDERANÇA ESTRATÉGICA</span> <span class="marquee-item">•</span>
+            <span class="marquee-item">MÁQUINA DE VENDAS</span> <span class="marquee-item">•</span>
+            <span class="marquee-item">GESTÃO DE PROCESSOS</span> <span class="marquee-item">•</span>
+            <span class="marquee-item">ALTA PERFORMANCE</span> <span class="marquee-item">•</span>
+            <span class="marquee-item">NETWORKING</span> <span class="marquee-item">•</span>
+            <span class="marquee-item">LIDERANÇA ESTRATÉGICA</span>
         </div>
     </div>
 
-    <section class="section-pad theme-light" id="pilares">
+    <section class="section-pad theme-light">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Por que o <span style="color: #06192a;">Ecossistema Live?</span></h2>
-                <p>Não entregamos apenas cursos. Entregamos a bússola para sua carreira.</p>
+            <div class="text-center">
+                <h2 style="font-size: 2.5rem;">O <span style="color: #06192a;">Ecossistema</span></h2>
+                <p>Não entregamos apenas cursos. Entregamos a bússola.</p>
             </div>
-
             <div class="bento-grid">
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-compass"></i></div>
                     <h3>Navegação na Crise</h3>
-                    <p style="margin-top: 1rem;">Atuamos como seu "farol". Tenha os meios de ação necessários para lidar com a complexidade e gerir no caos com clareza absoluta.</p>
+                    <p>Atuamos como seu "farol". Tenha os meios de ação necessários para lidar com a complexidade e gerir no caos.</p>
                 </div>
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-chart-polar"></i></div>
                     <h3>Desenvolvimento 360°</h3>
-                    <p style="margin-top: 1rem;">Centralizamos expertises essenciais em uma única plataforma. Conhecimento que se conecta e multiplica resultados reais.</p>
+                    <p>Expertises essenciais em uma única plataforma. Conhecimento que se conecta e multiplica resultados.</p>
                 </div>
                 <div class="light-card">
                     <div class="icon-box"><i class="ph ph-shield-check"></i></div>
                     <h3>Liderança Antifrágil</h3>
-                    <p style="margin-top: 1rem;">Prepare-se para lidar com desafios diários. O líder antifrágil não apenas resiste, ele se fortalece com a pressão.</p>
+                    <p>O líder antifrágil não apenas resiste, ele melhora com a pressão. Prepare-se para os desafios diários.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-pad theme-dark" id="mentores" style="background: radial-gradient(circle at center, #112538 0%, #0a0a0a 100%);">
+    <section class="section-pad theme-dark" style="background: radial-gradient(circle at center, #112538 0%, #0a0a0a 100%);">
         <div class="container">
             <div class="text-center" style="margin-bottom: 4rem;">
                 <span class="text-highlight" style="font-weight: 700; letter-spacing: 1px;">QUEM ENSINA</span>
                 <h2 style="font-size: 2.8rem;">Mentores de <span class="text-highlight">Elite</span></h2>
+                <p>Especialistas que vivem o que ensinam.</p>
             </div>
 
-            <div class="bento-grid">
-                <div class="mentor-card">
-                    <div class="mentor-img">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1.png" alt="Mentor">
+            <div class="carousel-wrapper">
+                <button class="nav-btn prev" onclick="scrollMentors(-1)"><i class="ph ph-caret-left"></i></button>
+                
+                <div class="mentors-track" id="mentorsTrack">
+                    
+                    <div class="mentor-card">
+                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/1.png" alt="Mentor"></div>
+                        <div class="mentor-details">
+                            <span class="mentor-role">Gestão Comercial</span>
+                            <h3>Nome do Mentor</h3>
+                            <div class="mentor-course">Curso: Máquina de Vendas</div>
+                        </div>
                     </div>
-                    <div class="mentor-details">
-                        <span class="mentor-role">Gestão Comercial</span>
-                        <h3>Nome do Mentor</h3>
-                        <p style="font-size: 0.9rem; color: #888;">Especialista em máquinas de vendas complexas.</p>
-                    </div>
-                </div>
 
-                <div class="mentor-card">
-                    <div class="mentor-img">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5.png" alt="Mentor">
+                    <div class="mentor-card">
+                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/5.png" alt="Mentor"></div>
+                        <div class="mentor-details">
+                            <span class="mentor-role">Liderança</span>
+                            <h3>Nome do Mentor</h3>
+                            <div class="mentor-course">Curso: Liderança Ágil</div>
+                        </div>
                     </div>
-                    <div class="mentor-details">
-                        <span class="mentor-role">Liderança Ágil</span>
-                        <h3>Nome do Mentor</h3>
-                        <p style="font-size: 0.9rem; color: #888;">Ex-CEO de multinacional e consultor.</p>
-                    </div>
-                </div>
 
-                <div class="mentor-card">
-                    <div class="mentor-img">
-                        <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/6.png" alt="Mentor">
+                    <div class="mentor-card">
+                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/6.png" alt="Mentor"></div>
+                        <div class="mentor-details">
+                            <span class="mentor-role">Neurociência</span>
+                            <h3>Nome do Mentor</h3>
+                            <div class="mentor-course">Curso: Cérebro de Performance</div>
+                        </div>
                     </div>
-                    <div class="mentor-details">
-                        <span class="mentor-role">Neurociência</span>
-                        <h3>Nome do Mentor</h3>
-                        <p style="font-size: 0.9rem; color: #888;">Doutor em comportamento humano.</p>
+
+                    <div class="mentor-card">
+                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/3.png" alt="Mentor"></div>
+                        <div class="mentor-details">
+                            <span class="mentor-role">Marketing</span>
+                            <h3>Nome do Mentor</h3>
+                            <div class="mentor-course">Curso: Branding Pessoal</div>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="mentor-card">
+                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/2.png" alt="Mentor"></div>
+                        <div class="mentor-details">
+                            <span class="mentor-role">Inovação</span>
+                            <h3>Nome do Mentor</h3>
+                            <div class="mentor-course">Curso: Gestão Exponencial</div>
+                        </div>
+                    </div>
+
+                    <div class="mentor-card">
+                        <div class="mentor-img"><img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/06/4.png" alt="Mentor"></div>
+                        <div class="mentor-details">
+                            <span class="mentor-role">Finanças</span>
+                            <h3>Nome do Mentor</h3>
+                            <div class="mentor-course">Curso: Finanças Corporativas</div>
+                        </div>
+                    </div>
+
+                </div> <button class="nav-btn next" onclick="scrollMentors(1)"><i class="ph ph-caret-right"></i></button>
             </div>
         </div>
     </section>
 
-    <section class="section-pad theme-light" id="jornada">
+    <section class="section-pad theme-light">
         <div class="container">
             <div class="text-center" style="margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem;">Sua Jornada <span style="color: #06192a;">Personalizada</span></h2>
+                <h2 style="font-size: 2.5rem;">Sua <span style="color: #06192a;">Jornada</span></h2>
                 <p>O passo a passo estruturado para sair da estagnação.</p>
             </div>
-
-            <div class="timeline-modern">
+            <div style="max-width: 800px; margin: 0 auto;">
                 <div class="timeline-node">
                     <div class="node-num">01</div>
                     <div>
-                        <h3 style="margin-bottom: 10px;">Formação Live</h3>
-                        <p>A base técnica. Cursos gravados, certificações e trilhas formativas para nivelar seu conhecimento.</p>
+                        <h3 style="margin-bottom: 5px;">Formação Live</h3>
+                        <p style="margin:0;">Cursos gravados, certificações e trilhas formativas.</p>
                     </div>
                 </div>
                 <div class="timeline-node">
                     <div class="node-num">02</div>
                     <div>
-                        <h3 style="margin-bottom: 10px;">Área de Membros</h3>
-                        <p>Conteúdo recorrente. Aulas mensais, lives fechadas e comunidade ativa para troca de experiências.</p>
+                        <h3 style="margin-bottom: 5px;">Área de Membros</h3>
+                        <p style="margin:0;">Aulas mensais, lives fechadas e comunidade ativa.</p>
                     </div>
                 </div>
                 <div class="timeline-node">
                     <div class="node-num">03</div>
                     <div>
-                        <h3 style="margin-bottom: 10px;">Mentoria Individual</h3>
-                        <p>Aceleração. Acesso direto a mentores para diagnóstico de carreira e plano de ação personalizado.</p>
+                        <h3 style="margin-bottom: 5px;">Mentoria Individual</h3>
+                        <p style="margin:0;">Diagnóstico de carreira e plano de ação personalizado.</p>
+                    </div>
+                </div>
+                <div class="timeline-node">
+                    <div class="node-num">04</div>
+                    <div>
+                        <h3 style="margin-bottom: 5px;">Conselho de Líderes</h3>
+                        <p style="margin:0;">Networking de alto nível e acesso estratégico.</p>
                     </div>
                 </div>
             </div>
@@ -414,45 +356,32 @@
     <section class="section-pad theme-dark" id="matricula">
         <div class="container">
             <div class="cta-wrapper">
-                <div style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: var(--neon-green); filter: blur(100px); opacity: 0.2;"></div>
-                
                 <h2 style="font-size: 3rem; margin-bottom: 1rem;">Agende com um <span class="text-highlight">Mentor</span></h2>
                 <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 2rem;">
-                    Preencha seus dados e receba uma ligação estratégica para analisar seu momento de carreira.
+                    Preencha seus dados e receba uma ligação estratégica.
                 </p>
-
                 <form class="form-inline">
                     <input type="email" placeholder="Seu melhor e-mail corporativo">
                     <button type="button">SOLICITAR CONTATO</button>
                 </form>
-                
-                <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.6;"><i class="ph ph-lock-key"></i> Seus dados estão 100% seguros. Sem spam.</p>
             </div>
         </div>
     </section>
 
-    <footer style="background: #000; color: #666; padding: 4rem 0; border-top: 1px solid #222; text-align: center;">
+    <footer>
         <div class="container">
-            <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-09-946x1024.png" alt="Live" style="height: 60px; margin: 0 auto 20px; opacity: 0.8;">
-            <p style="margin-bottom: 2rem;">Ecossistema de Liderança & Vendas.</p>
-            <div style="font-size: 0.85rem;">
-                &copy; 2025 Ecossistema Live. Todos os direitos reservados. <br>
-                <a href="#" style="color: #666; margin: 0 10px;">Termos de Uso</a> | <a href="#" style="color: #666; margin: 0 10px;">Privacidade</a>
-            </div>
+            <img src="https://ecossistemalive.com.br/site/wp-content/uploads/2025/04/Logo-live-oficial-09-946x1024.png" alt="Live" style="height: 60px; margin-bottom: 20px; opacity: 0.7;">
+            <p>© 2025 Ecossistema Live. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script>
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.05)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.9)';
-                header.style.boxShadow = 'none';
-            }
-        });
+        function scrollMentors(direction) {
+            const track = document.getElementById('mentorsTrack');
+            const cardWidth = 320; // Largura do card + gap
+            const scrollAmount = cardWidth * direction;
+            track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
     </script>
 
 </body>
